@@ -35,11 +35,12 @@ export default class Navbar extends React.Component {
                 <Menu.Item key="app" >
                     <Icon type="info-circle" />Sobre
                 </Menu.Item>
-
-                <Menu.Item key="app" >
-                    <Icon type="user" />Área do Usuário
-                </Menu.Item>
-
+                <SubMenu title={<span className="submenu-title-wrapper"><Icon type="user" />Área do Usuário</span>}>
+                    <MenuItemGroup key="app" >
+                        <Menu.Item key="setting:3">Fazer Login</Menu.Item>
+                        <Menu.Item key="setting:4">Cadastrar-se</Menu.Item>
+                    </MenuItemGroup>
+                </SubMenu>
 
 
             </Menu>

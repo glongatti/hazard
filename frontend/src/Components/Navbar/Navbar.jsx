@@ -25,20 +25,20 @@ export default class Navbar extends React.Component {
                 mode="horizontal"
 
             >
-                <Menu.Item key="mail">
-                    <Icon type="home" />Início
+                <Menu.Item key="inicio">
+                    <Link to="/"><Icon type="home" />Início</Link>
                 </Menu.Item>
-                <Menu.Item key="app">
-                    <Icon type="environment" />Visualizar Alertas
+                <Menu.Item key="alertas">
+                    <Link to="/alertas"><Icon type="environment" />Visualizar Alertas</Link>
                 </Menu.Item>
 
-                <Menu.Item key="app" >
-                    <Icon type="info-circle" />Sobre
+                <Menu.Item key="sobre" >
+                    <Link to="/sobre"><Icon type="info-circle" />Sobre</Link>
                 </Menu.Item>
                 <SubMenu title={<span className="submenu-title-wrapper"><Icon type="user" />Área do Usuário</span>}>
-                    <MenuItemGroup key="app" >
-                        <Menu.Item key="setting:3">Fazer Login</Menu.Item>
-                        <Menu.Item key="setting:4">Cadastrar-se</Menu.Item>
+                    <MenuItemGroup key="user" >
+                        <Menu.Item key="login"><Link to="/login">Fazer Login</Link></Menu.Item>
+                        <Menu.Item key="cadastro"><Link to="/cadastro">Cadastrar-se</Link></Menu.Item>
                     </MenuItemGroup>
                 </SubMenu>
 

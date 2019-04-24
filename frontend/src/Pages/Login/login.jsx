@@ -1,8 +1,9 @@
 import React from 'react';
 
 import {
-    Form, Icon, Input, Button, Checkbox,
+    Form, Icon, Input, Button
 } from 'antd';
+import { Link } from "react-router-dom";
 
 import "./../Login/login.css"
 class Login extends React.Component {
@@ -47,7 +48,7 @@ class Login extends React.Component {
                                 Fazer Login!
                         </Button>
                             &nbsp;
-                        Or &nbsp; <a href="">Quero me cadastrar!</a>
+                        Or &nbsp; <Link to="">Quero me cadastrar!</Link>
                         </Form.Item>
                     </Form>
                 </div>

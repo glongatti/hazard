@@ -13,28 +13,38 @@ class Index extends Component {
         return (
             <Layout>
                 <Content style={{ padding: '0 50px' }}>
-                    <div style={{ background: '#fff', padding: 24, minHeight: 280 }}>
-                        <h1 className="titulo">Imagine uma frase impactante aqui!!!</h1>
-                        <h3> Nossos melhores serviçoes estão aqui</h3>
-
+                    <div style={{ background: '#fff', padding: 24 }}>
+                        <Row>
+                            <Col>
+                                <h1 className="titulo">Está preocupado se está em uma área segura?<br /> Saiba onde estão os perigos perto de você.</h1>
+                                <h3>Ou se preferir, crie alertas de risco em sua área!</h3>
+                                <br />
+                            </Col>
+                        </Row>
                         <Row>
                             <Col span={4}></Col>
                             <Col span={4}></Col>
                             <Col span={4}>
-                                <Button type="primary">Primary</Button>
+                                <Button type="primary" className={"btnHome"}>Procurar Alertas</Button>
                             </Col>
 
 
 
 
-                            <Col span={4}><Button>Default</Button></Col>
+                            <Col span={4}><Button className={"btnHome"}>Criar Alertas</Button></Col>
                             <Col span={4}></Col>
                             <Col span={4}></Col>
                         </Row>
 
-
-
+                        <Row style={{ marginTop: 50 }}>
+                            <Col span={4}></Col>
+                            <Col span={16}>
+                                
+                            </Col>
+                            <Col span={4}></Col>
+                        </Row>
                     </div>
+
                 </Content>
             </Layout>
         );

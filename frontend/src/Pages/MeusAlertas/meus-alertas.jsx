@@ -3,7 +3,7 @@ import React from 'react';
 import { Table, Divider } from 'antd';
 
 import "./../Cadastro/cadastro.css"
-import { Link } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 
 const columns = [{
     title: 'Título do Alerta',
@@ -56,17 +56,46 @@ const data = [{
 
 class MeusAlertas extends React.Component {
 
+    constructor(props) {
+        super(props)
+        this.state = {
+            isLoading: true,
+            user: null
+        }
+    }
 
+    componentDidMount() {
+
+        const user = JSON.parse(localStorage.getItem('user'))
+
+        if (user) {
+            this.setState({
+                user: user,
+                isLoading: false
+            })
+        } else {
+            this.setState({
+                user: null,
+                isLoading: false
+            })
+        }
+    }
     render() {
+        if (this.state.isLoading) {
+            return (<p>Carregando...</p>)
+        } else if (!this.state.isLoading && !this.state.user) {
+            return <Redirect to="/login" />
+        } else {
+            return (
+                <div>
+                    <h1 className={"loginTitle"}>Meus Alertas</h1>
 
-        return (
-            <div>
-                <h1 class={"loginTitle"}>Meus Alertas</h1>
+                    <Table columns={columns} dataSource={data} />
 
-                <Table columns={columns} dataSource={data} />
+                </div>
+            );
+        }
 
-            </div>
-        );
     }
 }
 

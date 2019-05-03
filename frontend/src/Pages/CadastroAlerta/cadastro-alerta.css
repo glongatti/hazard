@@ -1,0 +1,12 @@
+.divLogin {
+    width: 25%;
+    margin: auto;
+    background-color: #E3E3E3;
+    padding: 30px;
+    opacity: 0.8;
+}
+
+.loginTitle {
+    margin-top: 5%;
+    margin-bottom: 2%;
+}

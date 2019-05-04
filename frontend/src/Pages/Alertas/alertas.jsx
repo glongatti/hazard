@@ -4,7 +4,7 @@ import BuscaAlertas from './../../Components/BuscaAlertas/BuscaAlertas'
 
 import "./../Cadastro/cadastro.css"
 import { Spin } from 'antd';
-
+import { appConfig } from './../../config'
 
 
 class Alertas extends React.Component {
@@ -43,7 +43,15 @@ class Alertas extends React.Component {
                     <h1 className={"loginTitle"}>Alertas Próximos a você!</h1>
 
 
-                    <BuscaAlertas lat={this.state.userLat} lng={this.state.userLng} />
+                    <BuscaAlertas
+                        isMarkerShown
+                        lat={this.state.userLat}
+                        lng={this.state.userLng}
+                        googleMapURL={appConfig.apiGoogleMapsURL}
+                        loadingElement={<div style={{ height: `100%` }} />}
+                        containerElement={<div style={{ height: `400px` }} />}
+                        mapElement={<div style={{ height: `100%` }} />}
+                    />
 
                 </div>
             );

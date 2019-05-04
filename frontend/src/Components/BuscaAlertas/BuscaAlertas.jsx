@@ -1,6 +1,6 @@
 
 import React, { Component } from 'react';
-import { Map, GoogleApiWrapper } from 'google-maps-react';
+import { withScriptjs, withGoogleMap, GoogleMap, Marker } from "react-google-maps"
 
 const mapStyles = {
     width: '100%',
@@ -11,19 +11,18 @@ export class BuscaAlertas extends Component {
     render() {
 
         return (
-            <Map
-                google={this.props.google}
-                zoom={14}
-                style={mapStyles}
-                initialCenter={{
-                    lat: this.props.lat,
-                    lng: this.props.lng
-                }}
-            />
+            <div>
+                <GoogleMap
+                    defaultZoom={50}
+                    defaultCenter={{ lat: this.props.lat, lng: this.props.lng }}
+                >
+                    <Marker
+                        position={{ lat: this.props.lat, lng: this.props.lng }}
+                    />
+                </GoogleMap>
+            </div>
         );
     }
 }
 
-export default GoogleApiWrapper({
-    apiKey: 'AIzaSyC7dOyAjw13KOMhdjebtBSQ-YbEU4v7PFI'
-})(BuscaAlertas);
+export default withScriptjs(withGoogleMap(BuscaAlertas))

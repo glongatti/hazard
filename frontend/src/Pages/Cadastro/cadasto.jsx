@@ -44,11 +44,11 @@ class Cadastro extends React.Component {
                 // vai fazer request axios para logar
                 this.registerRequest(jsonObject).then((response) => {
                     if (response.status == 200) {
-
                         const userObject = {
-                            id: response.data.id,
-                            email: response.data.email,
-                            name: response.data.nome
+                            id: response.data.body.id,
+                            email: response.data.body.email,
+                            nome: response.data.body.nome,
+                            alertas: response.data.body.alertas
                         }
 
                         localStorage.setItem('user', JSON.stringify(userObject))
@@ -58,7 +58,7 @@ class Cadastro extends React.Component {
 
                     }
                 }).catch((err) => {
-                    console.log(err)
+                    // console.log(err)
                     if (err.response) {
                         self.setState({
                             hasRequestError: true,

@@ -29,7 +29,7 @@ class Login extends React.Component {
             "Access-Control-Allow-Headers": "X-Requested-With"
         }
 
-        return axios.post(`http://127.0.0.1:8090/usuario/login?usuario=${email}&senha=${password}`, null, headers)
+        return axios.post(`http://127.0.0.1:8090/usuario/login?email=${email}&senha=${password}`, null, headers)
     }
 
     handleSubmit = (e) => {
@@ -39,7 +39,6 @@ class Login extends React.Component {
             if (!err) {
                 // vai fazer request axios para logar
                 this.loginRequest(values['email'], values['password']).then((response) => {
-                    console.log(response)
 
                     if (response.status == 200) {
                         const userObject = {
@@ -55,10 +54,11 @@ class Login extends React.Component {
 
                     }
                 }).catch((err) => {
+                    console.log(err.response)
                     if(err.response){
                         self.setState({
                             hasRequestError:true,
-                            errorMsg:err.response.data.error
+                            errorMsg:err.response.data.message
                         })
 
                     }else{

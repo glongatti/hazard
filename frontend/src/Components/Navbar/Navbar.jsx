@@ -31,7 +31,7 @@ export default class Navbar extends React.Component {
     }
 
     handleClick = (e) => {
-        console.log('click ', e);
+        // console.log('click ', e);
         this.setState({
             current: e.key,
         });
@@ -79,14 +79,14 @@ export default class Navbar extends React.Component {
 
                     {!this.state.user && (
                         <Menu.Item key="cadastro" >
-                            <Link to="/sobre"><Icon type="info-circle" />Cadastrar-se</Link>
+                            <Link to="/cadastro"><Icon type="info-circle" />Cadastrar-se</Link>
                         </Menu.Item>
                     )}
 
                     {this.state.user ? <Menu.Item key="logout" >
                         <Icon type="export" />Fazer Logout
                 </Menu.Item> : (
-                            <Menu.Item key="login" onClick={console.log('asdasd')} >
+                            <Menu.Item key="login" >
                                 <Link to="/login"><Icon type="user" />Fazer Login</Link>
                             </Menu.Item>
                         )}

@@ -5,6 +5,7 @@ import BuscaAlertas from './../../Components/BuscaAlertas/BuscaAlertas'
 import "./../Cadastro/cadastro.css"
 import { Spin } from 'antd';
 import { appConfig } from './../../config'
+import axios from 'axios';
 
 
 class Alertas extends React.Component {
@@ -14,9 +15,15 @@ class Alertas extends React.Component {
         this.state = {
             userLat: 0,
             userLng: 0,
-            isLoading: true
+            isLoading: true,
+            alerts: []
         }
     }
+
+    async getAllAlerts() {
+        return axios.get(appConfig.apiRoot + 'alerta')
+    }
+
     componentDidMount() {
         var self = this;
         navigator.geolocation.getCurrentPosition(
@@ -24,13 +31,24 @@ class Alertas extends React.Component {
                 self.setState({
                     userLat: position.coords.latitude,
                     userLng: position.coords.longitude,
-                    isLoading: false
                 })
             }, function (error) {
-                console.log('error', error)
+                // console.log('error', error)
             }
         )
+
+        this.getAllAlerts().then((result) => {
+            const alerts = result.data.body.map((value, index) => value)
+            self.setState({
+                alerts: alerts,
+                isLoading: false
+            })
+        }).catch((err) => {
+            console.log(err)
+        })
     }
+
+
 
     render() {
         if (this.state.isLoading) {
@@ -47,6 +65,7 @@ class Alertas extends React.Component {
                         isMarkerShown
                         lat={this.state.userLat}
                         lng={this.state.userLng}
+                        alerts={this.state.alerts}
                         googleMapURL={appConfig.apiGoogleMapsURL}
                         loadingElement={<div style={{ height: `100%` }} />}
                         containerElement={<div style={{ height: `400px` }} />}

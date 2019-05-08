@@ -39,12 +39,12 @@ class Login extends React.Component {
             if (!err) {
                 // vai fazer request axios para logar
                 this.loginRequest(values['email'], values['password']).then((response) => {
-
                     if (response.status == 200) {
                         const userObject = {
                             id: response.data.body.id,
                             email: response.data.body.email,
-                            name: response.data.body.nome
+                            name: response.data.body.nome,
+                            alertas: response.data.body.alertas
                         }
 
                         localStorage.setItem('user', JSON.stringify(userObject))
@@ -54,21 +54,21 @@ class Login extends React.Component {
 
                     }
                 }).catch((err) => {
-                    console.log(err.response)
-                    if(err.response){
+                    console.log('err',err)
+                    if (err.response) {
                         self.setState({
-                            hasRequestError:true,
-                            errorMsg:err.response.data.message
+                            hasRequestError: true,
+                            errorMsg: err.response.data.message
                         })
 
-                    }else{
+                    } else {
                         self.setState({
-                            hasRequestError:true,
-                            errorMsg:"Erro Interno no Servidor, por favor tente novamente mais tarde!"
+                            hasRequestError: true,
+                            errorMsg: "Erro Interno no Servidor, por favor tente novamente mais tarde!"
                         })
 
                     }
-                    
+
                 })
 
             }

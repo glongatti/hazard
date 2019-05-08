@@ -11,6 +11,7 @@ import Cadastro from './Pages/Cadastro/cadasto'
 import MeusAlertas from './Pages/MeusAlertas/meus-alertas';
 import Alertas from './Pages/Alertas/alertas'
 import CadastroAlerta from './Pages/CadastroAlerta/cadastro-alerta'
+import Logout from './Pages/Logout/logout'
 
 class AppRouter extends Component {
 
@@ -26,12 +27,10 @@ class AppRouter extends Component {
     const user = JSON.parse(localStorage.getItem('user'))
 
     if (user) {
-      console.log('nvarbar ta logado')
       this.setState({
         isLogged: true,
       })
     } else {
-      console.log('nvarbar naooo ta logado')
       this.setState({
         isLogged: false,
       })
@@ -39,7 +38,6 @@ class AppRouter extends Component {
   }
 
   render() {
-    console.log('renderizo')
     return (
       <div className="App">
 
@@ -52,6 +50,7 @@ class AppRouter extends Component {
           <Route path="/cadastro" component={Cadastro} />
           <Route path="/meus-alertas" component={MeusAlertas} />
           <Route path="/cadastro-alerta" component={CadastroAlerta} />
+          <Route path="/logout" component={Logout} />
         </Router>
 
       </div>

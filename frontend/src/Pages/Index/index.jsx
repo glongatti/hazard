@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Layout, Row, Col, Button } from 'antd';
-import './index.css'
+import { Link } from "react-router-dom";
+import css from './index.css'
+
 const { Content } = Layout;
 
 
@@ -10,10 +12,11 @@ class Index extends Component {
 
 
     render() {
+
         return (
             <Layout>
                 <Content style={{ padding: '0 50px' }}>
-                    <div style={{ background: '#fff', padding: 24 }}>
+                    <div className={"divHome"}>
                         <Row>
                             <Col>
                                 <h1 className="titulo">Está preocupado se está em uma área segura?<br /> Saiba onde estão os perigos perto de você.</h1>
@@ -25,13 +28,13 @@ class Index extends Component {
                             <Col span={4}></Col>
                             <Col span={4}></Col>
                             <Col span={4}>
-                                <Button type="primary" className={"btnHome"}>Procurar Alertas</Button>
+                                <Link to="/alertas"><Button type="primary" className={"btnHome"}>Procurar Alertas</Button></Link>
                             </Col>
 
 
 
 
-                            <Col span={4}><Button className={"btnHome"}>Criar Alertas</Button></Col>
+                            <Col span={4}><Link to="/cadastro-alerta"><Button className={"btnHome"}>Criar Alertas</Button></Link></Col>
                             <Col span={4}></Col>
                             <Col span={4}></Col>
                         </Row>
@@ -39,14 +42,14 @@ class Index extends Component {
                         <Row style={{ marginTop: 50 }}>
                             <Col span={4}></Col>
                             <Col span={16}>
-                                
+
                             </Col>
                             <Col span={4}></Col>
                         </Row>
                     </div>
 
                 </Content>
-            </Layout>
+            </Layout >
         );
     }
 }

@@ -1,11 +1,13 @@
 import React from 'react';
 
 import {
-    Form, Icon, Input, Button, Select
+    Form, Icon, Input, Button, Select, Alert
 } from 'antd';
 import { Redirect } from "react-router-dom";
 
 import "./cadastro-alerta.css"
+import axios from 'axios';
+import moment from 'moment'
 
 const { TextArea } = Input;
 const { Option } = Select;
@@ -19,27 +21,63 @@ class CadastroAlerta extends React.Component {
         super(props)
         this.state = {
             isLoading: true,
-            user: null
+            user: null,
+            userLat: 0,
+            userLng: 0,
+            hasMsg: false,
+            msgText: ''
         }
+    }
+
+    async createAlert(jsonObject) {
+        var headers = {
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Headers": "X-Requested-With"
+        }
+
+        return axios.post('http://127.0.0.1:8090/alerta', jsonObject, headers)
     }
 
     handleSubmit = (e) => {
         e.preventDefault();
+        var self = this;
         this.props.form.validateFields((err, values) => {
             if (!err) {
-                console.log('Received values of form: ', values);
+                const user = JSON.parse(localStorage.getItem('user'))
+                // console.log('values',values)
+                var json = {
+                    nome: values['nome'],
+                    descricao: values['descricao'],
+                    latitude: this.state.userLat,
+                    longitude: this.state.userLng,
+                    criacao: moment().utc().format('YYYY-MM-DD'),
+                    usuario: {
+                        id: user.id
+                    },
+                    tipoAlerta: {
+                        id: values['tipo']
+                    }
+                }
+                console.log('json', json)
+                this.createAlert(json).then((result) => {
+                    self.setState({
+                        hasMsg: true,
+                        msgText: 'Parabéns o seu alerta foi criado com sucesso!',
+                        msgType: 'success'
+                    })
+                }).catch((err) => {
+                    console.log('deu ruim', err.response)
+                })
             }
         });
     }
 
     componentDidMount() {
-
+        var self = this;
         const user = JSON.parse(localStorage.getItem('user'))
-
         if (user) {
             this.setState({
                 user: user,
-                isLoading: false
             })
         } else {
             this.setState({
@@ -47,6 +85,20 @@ class CadastroAlerta extends React.Component {
                 isLoading: false
             })
         }
+
+
+        navigator.geolocation.getCurrentPosition(
+            function (position) {
+                self.setState({
+                    userLat: position.coords.latitude,
+                    userLng: position.coords.longitude,
+                    isLoading: false
+                })
+            }, function (error) {
+                console.log('error', error)
+            }
+        )
+
     }
 
 
@@ -66,14 +118,14 @@ class CadastroAlerta extends React.Component {
                         <Form onSubmit={this.handleSubmit} className="login-form">
                             <p>Por favorr, preencha os campos abaixo para poder fazer o cadastro do alerta</p>
                             <Form.Item>
-                                {getFieldDecorator('nome-alerta', {
+                                {getFieldDecorator('nome', {
                                     rules: [{ required: true, message: 'Preencha o nome do alerta' }],
                                 })(
                                     <Input prefix={<Icon type="idcard" style={{ color: 'rgba(0,0,0,.25)' }} />} type="text" placeholder="Nome do Alerta" />
                                 )}
                             </Form.Item>
                             <Form.Item>
-                                {getFieldDecorator('desc', {
+                                {getFieldDecorator('descricao', {
                                     rules: [
                                         { required: true, message: 'Por favor insira a descrição do alerta!' }],
                                 })(
@@ -81,7 +133,7 @@ class CadastroAlerta extends React.Component {
                                 )}
                             </Form.Item>
                             <Form.Item>
-                                {getFieldDecorator('password', {
+                                {getFieldDecorator('tipo', {
                                     rules: [{ required: true, message: 'Preencha sua senha por favor!' }],
                                 })(
                                     <Select defaultValue="1" placeholder="Tipo de Alerta">
@@ -93,11 +145,14 @@ class CadastroAlerta extends React.Component {
                             </Form.Item>
                             <Form.Item>
                                 <Button type="primary" htmlType="submit" className="login-form-button">
-                                    Criar Conta
+                                    Cadastrar Alerta
                             </Button>
                             </Form.Item>
                         </Form>
                     </div>
+                    {this.state.hasMsg && (
+                        <Alert style={{ margin: ' 20px auto', maxWidth: 500 }} type={this.state.msgType} message={"Atenção"} description={this.state.msgText} />
+                    )}
                 </div>
             );
         }

@@ -1,9 +1,9 @@
 import React from 'react';
 
-import { Table, Divider } from 'antd';
+import { Table, Divider, Row, Col, Button } from 'antd';
 
 import "./../Cadastro/cadastro.css"
-import { Redirect } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 
 const columns = [{
     title: 'Título do Alerta',
@@ -88,9 +88,21 @@ class MeusAlertas extends React.Component {
         } else {
             return (
                 <div>
-                    <h1 className={"loginTitle"}>Meus Alertas</h1>
+                    <Row>
+                        <Col span={24} >
+                            <h1 className={"loginTitle"}>Meus Alertas</h1>
+                        </Col>
 
-                    <Table columns={columns} dataSource={data} />
+                        <Col span={20} offset={2}>
+                            {this.state.user.alertas ? <Table columns={columns} dataSource={data} /> : <h3>Ops... parece que você não tem nenhum alerta cadastrado!</h3> }
+
+                            {/* <Table columns={columns} dataSource={data} /> */}
+                        </Col>
+                        <Col span={24} style={{ marginBottom: 20 }}>
+                            <Link to="/cadastro-alerta"> <Button type="primary">Cadastrar Alerta</Button></Link>
+                        </Col>
+                    </Row>
+
 
                 </div>
             );

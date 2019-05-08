@@ -1,6 +1,6 @@
 import React from 'react';
 import { Menu, Icon } from 'antd';
-import { Link,Redirect } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 
 const SubMenu = Menu.SubMenu;
 const MenuItemGroup = Menu.ItemGroup;
@@ -79,12 +79,12 @@ export default class Navbar extends React.Component {
 
                     {!this.state.user && (
                         <Menu.Item key="cadastro" >
-                            <Link to="/cadastro"><Icon type="info-circle" />Cadastrar-se</Link>
+                            <Link to="/cadastro"><Icon type="user-add" />Cadastre-se</Link>
                         </Menu.Item>
                     )}
 
                     {this.state.user ? <Menu.Item key="logout" >
-                        <Icon type="export" />Fazer Logout
+                    <Link to="/logout"><Icon type="export" />Fazer Logout</Link>
                 </Menu.Item> : (
                             <Menu.Item key="login" >
                                 <Link to="/login"><Icon type="user" />Fazer Login</Link>

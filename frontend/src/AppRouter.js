@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 
 import Navbar from './Components/Navbar/Navbar';
@@ -17,6 +17,7 @@ class AppRouter extends Component {
 
   constructor(props) {
     super(props)
+    this.login = this.login.bind(this)
     this.state = {
       isLogged: false
     }
@@ -37,23 +38,39 @@ class AppRouter extends Component {
     }
   }
 
+  logout() {
+    localStorage.removeItem('user')
+
+    this.setState({
+      isLogged: false
+    })
+
+  }
+
+  login() {
+
+    this.setState({
+      isLogged: true
+    })
+  }
+
   render() {
+
     return (
-      <div className="App">
-
-
-        <Router Navbar={Navbar}>
-          <Navbar isLogged={this.state.isLogged} />
-          <Route path="/" exact component={Index} />
-          <Route path="/alertas" exact component={Alertas} />
-          <Route path="/login" component={Login} />
-          <Route path="/cadastro" component={Cadastro} />
-          <Route path="/meus-alertas" component={MeusAlertas} />
-          <Route path="/cadastro-alerta" component={CadastroAlerta} />
-          <Route path="/logout" component={Logout} />
-        </Router>
-
-      </div>
+      <Router>
+        <div className="App">
+          <Navbar isLogged={this.state.isLogged} logout={this.logout} />
+          <Switch>
+            <Route path="/" exact component={Index} />
+            <Route path="/alertas" exact component={Alertas} />
+            <Route path="/login" render={(props) => <Login {...props} login={this.login} />} />
+            <Route path="/cadastro" component={Cadastro} />
+            <Route path="/meus-alertas" component={MeusAlertas} />
+            <Route path="/cadastro-alerta" component={CadastroAlerta} />
+            <Route path="/logout" component={Logout} />
+          </Switch>
+        </div>
+      </Router >
 
     );
   }

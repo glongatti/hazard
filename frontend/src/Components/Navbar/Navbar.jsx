@@ -42,7 +42,7 @@ export default class Navbar extends React.Component {
     }
 
     renderUserArea() {
-        if (this.state.user) {
+        if (this.props.isLogged) {
             return (
                 <SubMenu title={<span className="submenu-title-wrapper"><Icon type="user" />Área do Usuário</span>}>
                     <MenuItemGroup key="alertas" >
@@ -77,15 +77,15 @@ export default class Navbar extends React.Component {
 
                     {this.renderUserArea()}
 
-                    {!this.state.user && (
+                    {!this.props.isLogged && (
                         <Menu.Item key="cadastro" >
                             <Link to="/cadastro"><Icon type="user-add" />Cadastre-se</Link>
                         </Menu.Item>
                     )}
 
-                    {this.state.user ? <Menu.Item key="logout" >
-                    <Link to="/logout"><Icon type="export" />Fazer Logout</Link>
-                </Menu.Item> : (
+                    {this.props.isLogged ? <Menu.Item key="logout" >
+                        <Link to="/logout" onClick={this.props.logout}><Icon type="export" />Fazer Logout</Link>
+                    </Menu.Item> : (
                             <Menu.Item key="login" >
                                 <Link to="/login"><Icon type="user" />Fazer Login</Link>
                             </Menu.Item>

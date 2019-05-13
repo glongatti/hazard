@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Layout, Row, Col, Button } from 'antd';
 import { Link } from "react-router-dom";
-import css from './index.css'
+import './index.css'
 
 const { Content } = Layout;
 

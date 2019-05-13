@@ -2,10 +2,10 @@
 import React, { Component } from 'react';
 import { withScriptjs, withGoogleMap, GoogleMap, Marker, InfoWindow } from "react-google-maps"
 
-const mapStyles = {
-    width: '100%',
-    height: '500px',
-};
+// const mapStyles = {
+//     width: '100%',
+//     height: '500px',
+// };
 
 export class BuscaAlertas extends Component {
 
@@ -16,10 +16,6 @@ export class BuscaAlertas extends Component {
             showInfo: false,
             index: 0
         }
-    }
-
-    changeShowInfoState = (value) => {
-        console.log('mudou', value)
     }
 
     render() {
@@ -34,7 +30,6 @@ export class BuscaAlertas extends Component {
             />
 
         )
-        console.log(this.state.selectedAlert)
         return (
             <div>
                 <GoogleMap

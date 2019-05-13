@@ -8,7 +8,6 @@ import { Link, Redirect } from "react-router-dom";
 import axios from 'axios';
 
 import "./../Login/login.css"
-import { appConfig } from './../../config'
 
 class Login extends React.Component {
 
@@ -39,7 +38,7 @@ class Login extends React.Component {
             if (!err) {
                 // vai fazer request axios para logar
                 this.loginRequest(values['email'], values['password']).then((response) => {
-                    if (response.status == 200) {
+                    if (response.status === 200) {
                         const userObject = {
                             id: response.data.body.id,
                             email: response.data.body.email,

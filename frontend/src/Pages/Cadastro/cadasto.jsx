@@ -4,7 +4,7 @@ import {
     Form, Icon, Input, Button, Alert
 } from 'antd';
 import axios from 'axios';
-import { Link, Redirect } from "react-router-dom";
+import {  Redirect } from "react-router-dom";
 
 
 import "./../Cadastro/cadastro.css"
@@ -43,7 +43,7 @@ class Cadastro extends React.Component {
 
                 // vai fazer request axios para logar
                 this.registerRequest(jsonObject).then((response) => {
-                    if (response.status == 200) {
+                    if (response.status === 200) {
                         const userObject = {
                             id: response.data.body.id,
                             email: response.data.body.email,

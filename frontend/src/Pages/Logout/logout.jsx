@@ -1,9 +1,9 @@
 import React from 'react';
 
-import { Table, Divider, Row, Col, Button } from 'antd';
+import { Row, Col, Button } from 'antd';
 
 import "./../Cadastro/cadastro.css"
-import { Redirect, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 
 class Logout extends React.Component {
@@ -23,30 +23,30 @@ class Logout extends React.Component {
         if (user) {
             localStorage.removeItem('user')
             this.setState({
-                isLoading:false
+                isLoading: false
             })
-        }else{
+        } else {
             this.setState({
-                isLoading:false
+                isLoading: false
             })
         }
     }
     render() {
         if (this.state.isLoading) {
             return (<p>Carregando...</p>)
-        } 
+        }
         // else if (!this.state.isLoading && !this.state.user) {
         //     return <Redirect to="/" />
         // } 
-        
+
         else {
             return (
                 <div>
                     <Row>
-                   
 
-                        <Col span={20} offset={2}  style={{ marginTop: 50 }}>
-                            <h2>A sua sessão foi finalizada com sucesso!</h2> 
+
+                        <Col span={20} offset={2} style={{ marginTop: 50 }}>
+                            <h2>A sua sessão foi finalizada com sucesso!</h2>
 
                             {/* <Table columns={columns} dataSource={data} /> */}
                         </Col>

@@ -4,14 +4,21 @@ import { Table, Divider, Row, Col, Button } from 'antd';
 
 import "./../Cadastro/cadastro.css"
 import { Redirect, Link } from "react-router-dom";
+import moment from 'moment'
 
 const columns = [{
-    title: 'Título do Alerta',
+    title: 'Título',
     dataIndex: 'titulo',
     key: 'titulo',
-    render: text => <a href="javascript:;">{text}</a>,
-}, {
-    title: 'Tipo do Alerta',
+    render: text => <a href="/">{text}</a>,
+},
+{
+    title: 'Descrição',
+    dataIndex: 'descricao',
+    key: 'descricao',
+}
+    , {
+    title: 'Tipo',
     dataIndex: 'tipo',
     key: 'tipo',
 }, {
@@ -23,36 +30,17 @@ const columns = [{
     key: 'data',
     dataIndex: 'data'
 }, {
-    title: 'Action',
-    key: 'action',
+    title: 'Ação',
+    key: 'acao',
     render: (text, record) => (
         <span>
-            <a href="javascript:;">Invite {record.name}</a>
+            <a href="/">Editar {record.text}</a>
             <Divider type="vertical" />
-            <a href="javascript:;">Delete</a>
+            <a href="/">Deletar</a>
         </span>
     ),
 }];
 
-const data = [{
-    key: '1',
-    titulo: 'John Brown',
-    tipo: 32,
-    address: 'New York No. 1 Lake Park',
-    tags: ['nice', 'developer'],
-}, {
-    key: '2',
-    name: 'Jim Green',
-    age: 42,
-    address: 'London No. 1 Lake Park',
-    tags: ['loser'],
-}, {
-    key: '3',
-    name: 'Joe Black',
-    age: 32,
-    address: 'Sidney No. 1 Lake Park',
-    tags: ['cool', 'teacher'],
-}];
 
 class MeusAlertas extends React.Component {
 
@@ -60,7 +48,8 @@ class MeusAlertas extends React.Component {
         super(props)
         this.state = {
             isLoading: true,
-            user: null
+            user: null,
+            alerts: []
         }
     }
 
@@ -69,10 +58,30 @@ class MeusAlertas extends React.Component {
         const user = JSON.parse(localStorage.getItem('user'))
 
         if (user) {
-            this.setState({
-                user: user,
-                isLoading: false
-            })
+            if(user.alertas){
+                const alerts = user.alertas.map((value, index) => {
+                    return {
+                        key: index,
+                        titulo: value.nome,
+                        descricao: value.descricao,
+                        tipo: value.tipoAlerta.nome,
+                        localizacao: value.latitude + ',' + value.longitude,
+                        data: moment(value.criacao).format('DD/MM/YYYY')
+    
+                    }
+                })
+                this.setState({
+                    user: user,
+                    isLoading: false,
+                    alerts: alerts
+                })
+            }else{
+                this.setState({
+                    user: user,
+                    isLoading: false,
+                    alerts: []
+                })
+            }
         } else {
             this.setState({
                 user: null,
@@ -94,7 +103,7 @@ class MeusAlertas extends React.Component {
                         </Col>
 
                         <Col span={20} offset={2}>
-                            {this.state.user.alertas ? <Table columns={columns} dataSource={data} /> : <h3>Ops... parece que você não tem nenhum alerta cadastrado!</h3> }
+                            {this.state.user.alertas ? <Table columns={columns} dataSource={this.state.alerts} /> : <h3>Ops... parece que você não tem nenhum alerta cadastrado!</h3>}
 
                             {/* <Table columns={columns} dataSource={data} /> */}
                         </Col>

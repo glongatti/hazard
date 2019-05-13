@@ -44,7 +44,6 @@ class CadastroAlerta extends React.Component {
         this.props.form.validateFields((err, values) => {
             if (!err) {
                 const user = JSON.parse(localStorage.getItem('user'))
-                // console.log('values',values)
                 var json = {
                     nome: values['nome'],
                     descricao: values['descricao'],
@@ -58,7 +57,6 @@ class CadastroAlerta extends React.Component {
                         id: values['tipo']
                     }
                 }
-                console.log('json', json)
                 this.createAlert(json).then((result) => {
                     self.setState({
                         hasMsg: true,
@@ -66,7 +64,7 @@ class CadastroAlerta extends React.Component {
                         msgType: 'success'
                     })
                 }).catch((err) => {
-                    console.log('deu ruim', err.response)
+                    console.log('Erro', err.response)
                 })
             }
         });
@@ -137,9 +135,15 @@ class CadastroAlerta extends React.Component {
                                     rules: [{ required: true, message: 'Preencha sua senha por favor!' }],
                                 })(
                                     <Select defaultValue="1" placeholder="Tipo de Alerta">
-                                        <Option value="1">Option 1</Option>
-                                        <Option value="2">Option 2</Option>
-                                        <Option value="3">Option 3</Option>
+                                        <Option value="0">Assalto</Option>
+                                        <Option value="1">Deslizamento ou escorregamento de terra</Option>
+                                        <Option value="2">Epidemias</Option>
+                                        <Option value="3">Inundação</Option>
+                                        <Option value="4">Incêndios</Option>
+                                        <Option value="5">Rajadas violentas de vento</Option>
+                                        <Option value="6">Sismo</Option>
+                                        <Option value="7">Tempestades</Option>
+                                        <Option value="7">Troca de tiros</Option>
                                     </Select>
                                 )}
                             </Form.Item>

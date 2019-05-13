@@ -46,6 +46,7 @@ class Login extends React.Component {
                             alertas: response.data.body.alertas
                         }
 
+                        this.props.login()
                         localStorage.setItem('user', JSON.stringify(userObject))
                         self.setState({
                             userAuthenticated: true
@@ -53,7 +54,7 @@ class Login extends React.Component {
 
                     }
                 }).catch((err) => {
-                    console.log('err',err)
+                    console.log('err', err)
                     if (err.response) {
                         self.setState({
                             hasRequestError: true,
@@ -76,6 +77,7 @@ class Login extends React.Component {
 
 
     render() {
+        // console.log(this.props.login())
         const { getFieldDecorator } = this.props.form;
 
         if (this.state.userAuthenticated) return <Redirect to={"/meus-alertas"} />;

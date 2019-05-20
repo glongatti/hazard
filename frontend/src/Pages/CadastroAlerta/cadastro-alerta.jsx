@@ -25,7 +25,8 @@ class CadastroAlerta extends React.Component {
             userLat: 0,
             userLng: 0,
             hasMsg: false,
-            msgText: ''
+            msgText: '',
+            tiposAlertas: []
         }
     }
 
@@ -37,6 +38,17 @@ class CadastroAlerta extends React.Component {
 
         return axios.post('http://127.0.0.1:8090/alerta', jsonObject, headers)
     }
+
+    async getTipoAlertas() {
+        var headers = {
+            "Access-Control-Allow-Origin": "*",
+            "Access-Control-Allow-Headers": "X-Requested-With"
+        }
+
+        return axios.get('http://127.0.0.1:8090/tipoAlerta', headers)
+    }
+
+
 
     handleSubmit = (e) => {
         e.preventDefault();
@@ -97,6 +109,22 @@ class CadastroAlerta extends React.Component {
             }
         )
 
+        this.getTipoAlertas().then((result) => {
+
+            const tipos = result.data.body.map((index, value) => {
+                return {
+                    ID: index.id,
+                    Nome: index.nome
+                }
+            })
+            console.log(tipos)
+            self.setState({
+                tiposAlertas: tipos
+            })
+        }).catch((err) => {
+            console.log('err', err)
+        })
+
     }
 
 
@@ -109,6 +137,8 @@ class CadastroAlerta extends React.Component {
         } else {
             const { getFieldDecorator } = this.props.form;
 
+            const options = this.state.tiposAlertas.map((index, value) => <Option value={index.ID}>{index.Nome}</Option>)
+            console.log('optios',options)
             return (
                 <div>
                     <h1 className={"loginTitle"}>Cadastro de Alerta</h1>
@@ -135,7 +165,7 @@ class CadastroAlerta extends React.Component {
                                     rules: [{ required: true, message: 'Preencha sua senha por favor!' }],
                                 })(
                                     <Select defaultValue="1" placeholder="Tipo de Alerta">
-                                        <Option value="0">Assalto</Option>
+                                        {/* <Option value="0">Assalto</Option>
                                         <Option value="1">Deslizamento ou escorregamento de terra</Option>
                                         <Option value="2">Epidemias</Option>
                                         <Option value="3">Inundação</Option>
@@ -143,7 +173,8 @@ class CadastroAlerta extends React.Component {
                                         <Option value="5">Rajadas violentas de vento</Option>
                                         <Option value="6">Sismo</Option>
                                         <Option value="7">Tempestades</Option>
-                                        <Option value="7">Troca de tiros</Option>
+                                        <Option value="7">Troca de tiros</Option> */}
+                                        {options}
                                     </Select>
                                 )}
                             </Form.Item>

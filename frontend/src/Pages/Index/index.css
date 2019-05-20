@@ -12,5 +12,12 @@
 }
 
 .divHome {
-    background: #D0E4F5 url("https://i.imgur.com/iINN1il.jpg") repeat scroll 50% 50%;
+    /* background: #D0E4F5 url("https://i.imgur.com/iINN1il.jpg") repeat scroll 50% 50%; */
+    background: #D0E4F5 url("https://i.imgur.com/lkgCpVh.jpg") repeat scroll 50% 50%;
+}
+
+.colFeatures {
+    width: 250px;
+    text-align: center;
+    margin: auto;
 }

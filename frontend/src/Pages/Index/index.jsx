@@ -16,7 +16,7 @@ class Index extends Component {
         return (
             <Layout>
                 <Content style={{ padding: '0 50px' }}>
-                    <div className={"divHome"}>
+                    <Row className={"divHome"}>
                         <Row>
                             <Col>
                                 <h1 className="titulo">Está preocupado se está em uma área segura?<br /> Saiba onde estão os perigos perto de você.</h1>
@@ -46,7 +46,38 @@ class Index extends Component {
                             </Col>
                             <Col span={4}></Col>
                         </Row>
-                    </div>
+
+                    </Row>
+                    <Row type={"flex"} style={{ marginTop: '50px' }}>
+                        <Col span={8} className={"colFeatures"}>
+                            <Col span={24}>
+                                <img src="https://i.imgur.com/A9vsrrG.png" width="130" />
+                            </Col>
+                            <Col span={24}>
+                            <br/>
+                                <p> Contribua com milhares de usuários, avisando sobre áreas de riscona sua região.</p>
+                            </Col>
+                        </Col>
+                        <Col span={8} className={"colFeatures"}>
+                            <Col span={24}>
+                                <img src="https://i.imgur.com/siEmVZN.png" />
+                            </Col>
+                            <Col span={24}>
+                            <br/>
+                                <p>Aqui no nosso sistema, será possível verificar se você está em uma região de risco.</p>
+                            </Col>
+                        </Col>
+                        <Col span={8} className={"colFeatures"}>
+                            <Col span={24}>
+                                <img src="https://i.imgur.com/LH8F1Rn.png" />
+                            </Col>
+                            <Col span={24}>
+                            <br/>
+                                <p> Diversos tipos de classificação de alertas para você ficar ciente de tudo o que acontece ao seu redor.</p>
+                            </Col>
+                        </Col>
+
+                    </Row>
 
                 </Content>
             </Layout >

@@ -1,9 +1,9 @@
 .titulo {
-    color: #454545;
+    color: rgba(255, 255, 255, 0.65);
     font-size: 3em;
-    max-width: 760px;
+    max-width: 480px;
     text-align: center;
-    margin: auto;
+    margin: 125px auto auto auto;
 }
 
 .btnHome {
@@ -13,7 +13,8 @@
 
 .divHome {
     /* background: #D0E4F5 url("https://i.imgur.com/iINN1il.jpg") repeat scroll 50% 50%; */
-    background: #D0E4F5 url("https://i.imgur.com/lkgCpVh.jpg") repeat scroll 50% 50%;
+    background: #D0E4F5 url("https://i.imgur.com/mdRtDnO.jpg") repeat scroll 50% 90%;
+	
 }
 
 .colFeatures {

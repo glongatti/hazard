@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { Layout, Row, Col, Button } from 'antd';
 import { Link } from "react-router-dom";
 import './index.css'
-
+import { Typography } from 'antd';
+const { Text } = Typography;
 const { Content } = Layout;
 
 
@@ -18,18 +19,20 @@ class Index extends Component {
                 <Content style={{ padding: '0 50px' }}>
                     <Row className={"divHome"}>
                         <Row>
-                            <Col>
-                                <h1 className="titulo">Está preocupado se está em uma área segura?<br /> Saiba onde estão os perigos perto de você.</h1>
-                                <h3>Ou se preferir, crie alertas de risco em sua área!</h3>
+                            <Col span={8}>
+                                <h1 className="titulo">Fique alerta!<br/> Saiba se há algum perigo perto de você.</h1>
+                                <h3>Ou faça sua parte</h3>
                                 <br />
+								<Col span={24}>
+									<Link to="/alertas"><Button type="primary" className={"btnHome"}>Procurar Alertas</Button></Link>
+								</Col>
                             </Col>
+							
                         </Row>
                         <Row>
                             <Col span={4}></Col>
                             <Col span={4}></Col>
-                            <Col span={4}>
-                                <Link to="/alertas"><Button type="primary" className={"btnHome"}>Procurar Alertas</Button></Link>
-                            </Col>
+                            
 
 
 
@@ -76,7 +79,7 @@ class Index extends Component {
                                 <p> Diversos tipos de classificação de alertas para você ficar ciente de tudo o que acontece ao seu redor.</p>
                             </Col>
                         </Col>
-
+	
                     </Row>
 
                 </Content>

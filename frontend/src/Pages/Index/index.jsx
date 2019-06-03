@@ -20,8 +20,8 @@ class Index extends Component {
                     <Row className={"divHome"}>
                         <Row>
                             <Col span={8}>
-                                <h1 className="titulo">Fique alerta!<br/> Saiba se há algum perigo perto de você.</h1>
-                                <h3>Ou faça sua parte</h3>
+                                <h1 className="titulo">Fique alerta!<br/> Saiba se há algum perigo perto de você...</h1>
+                                
                                 <br />
 								<Col span={24}>
 									<Link to="/alertas"><Button type="primary" className={"btnHome"}>Procurar Alertas</Button></Link>
@@ -29,25 +29,12 @@ class Index extends Component {
                             </Col>
 							
                         </Row>
-                        <Row>
-                            <Col span={4}></Col>
-                            <Col span={4}></Col>
+                        <Row type="flex" justify="end">
+                            <Col span={4}>
+								<h3 className="subTitulo">...ou faça sua parte:</h3>
+								<Link to="/cadastro-alerta"><Button className={"btnHome btnCriar"}>Criar Alertas</Button></Link>
+							</Col>
                             
-
-
-
-
-                            <Col span={4}><Link to="/cadastro-alerta"><Button className={"btnHome"}>Criar Alertas</Button></Link></Col>
-                            <Col span={4}></Col>
-                            <Col span={4}></Col>
-                        </Row>
-
-                        <Row style={{ marginTop: 50 }}>
-                            <Col span={4}></Col>
-                            <Col span={16}>
-
-                            </Col>
-                            <Col span={4}></Col>
                         </Row>
 
                     </Row>

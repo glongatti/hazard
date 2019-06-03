@@ -45,7 +45,7 @@ class Index extends Component {
                             </Col>
                             <Col span={24}>
                             <br/>
-                                <p> Contribua com milhares de usuários, avisando sobre áreas de riscona sua região.</p>
+                                <p> Contribua com milhares de usuários, avisando sobre áreas de risco na sua região.</p>
                             </Col>
                         </Col>
                         <Col span={8} className={"colFeatures"}>
@@ -54,7 +54,7 @@ class Index extends Component {
                             </Col>
                             <Col span={24}>
                             <br/>
-                                <p>Aqui no nosso sistema, será possível verificar se você está em uma região de risco.</p>
+                                <p>Com o Hazard é possível andar sempre informado sobre regiões de risco.</p>
                             </Col>
                         </Col>
                         <Col span={8} className={"colFeatures"}>

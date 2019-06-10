@@ -21,12 +21,8 @@ class Cadastro extends React.Component {
     }
 
     async registerRequest(obj) {
-        var headers = {
-            "Access-Control-Allow-Origin": "*",
-            "Access-Control-Allow-Headers": "X-Requested-With"
-        }
 
-        return axios.post(`http://127.0.0.1:8090/usuario`, obj, headers)
+        return axios.post(`http://127.0.0.1:8090/usuario`, obj)
     }
 
     handleSubmit = (e) => {

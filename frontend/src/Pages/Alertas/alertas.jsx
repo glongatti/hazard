@@ -58,7 +58,7 @@ class Alertas extends React.Component {
         } else {
             return (
                 <div>
-                    <h1 className={"loginTitle"}>Alertas Próximos a você!</h1>
+                    {/* <h1 className={"loginTitle"}>Alertas Próximos a você!</h1> */}
 
 
                     <BuscaAlertas
@@ -68,7 +68,8 @@ class Alertas extends React.Component {
                         alerts={this.state.alerts}
                         googleMapURL={appConfig.apiGoogleMapsURL}
                         loadingElement={<div style={{ height: `100%` }} />}
-                        containerElement={<div style={{ height: `400px` }} />}
+                        containerElement={<div style={{ height: `100vh` }} />}
+                        // containerElement={<div style={{ height: `600px` }} />}
                         mapElement={<div style={{ height: `100%` }} />}
                     />
 

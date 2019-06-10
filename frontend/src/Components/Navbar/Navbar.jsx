@@ -71,9 +71,9 @@ export default class Navbar extends React.Component {
                         <Link to="/alertas"><Icon type="environment" />Visualizar Alertas</Link>
                     </Menu.Item>
 
-                    <Menu.Item key="sobre" >
+                    {/* <Menu.Item key="sobre" >
                         <Link to="/sobre"><Icon type="info-circle" />Sobre</Link>
-                    </Menu.Item>
+                    </Menu.Item> */}
 
                     {this.renderUserArea()}
 
